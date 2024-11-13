@@ -20,7 +20,14 @@ class MainActivity : AppCompatActivity() {
 
         buttonAbrir.setOnClickListener {
 
-            val intent = Intent(this, DetalhesActivity::class.java)
+            // posso passar parametros com a intent para a nova tela
+            val intent = Intent(
+                this,
+                DetalhesActivity::class.java)
+
+            intent.putExtra("filme", "The Witcher")
+            intent.putExtra("classificacao", 5)
+            intent.putExtra("avaliacoes", 9.2)
 
             startActivity(intent)
         }
