@@ -1,5 +1,6 @@
 package io.github.guilhermemelo01.activityfragments
 
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
@@ -24,12 +25,21 @@ class DetalhesActivity : AppCompatActivity() {
         textFilme = findViewById(R.id.textFilme)
 
         val bundle = intent.extras
-        val filme = bundle?.getString("filme")
-        val classificacao = bundle?.getInt("classificacao")
-        val avaliacoes = bundle?.getDouble("avaliacoes")
+//        val filme = bundle?.getString("filme")
+//        val classificacao = bundle?.getInt("classificacao")
+//        val avaliacoes = bundle?.getDouble("avaliacoes")
+//        val resultado = "filme $filme - class. $classificacao - aval. $avaliacoes"
+//        textFilme.text = resultado
 
-        val resultado = "filme $filme - class. $classificacao - aval. $avaliacoes"
-        textFilme.text = resultado
+
+        val filme = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            bundle?.getParcelable("filme", Filme::class.java)
+        } else {
+            bundle?.getParcelable("filme")
+        }
+
+
+        textFilme.text = "${filme?.nome} - ${filme?.distribuidor}"
 
         buttonFechar.setOnClickListener {
             finish()

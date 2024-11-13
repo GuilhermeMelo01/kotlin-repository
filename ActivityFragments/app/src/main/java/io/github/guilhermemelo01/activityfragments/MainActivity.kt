@@ -23,11 +23,22 @@ class MainActivity : AppCompatActivity() {
             // posso passar parametros com a intent para a nova tela
             val intent = Intent(
                 this,
-                DetalhesActivity::class.java)
+                DetalhesActivity::class.java
+            )
 
-            intent.putExtra("filme", "The Witcher")
-            intent.putExtra("classificacao", 5)
-            intent.putExtra("avaliacoes", 9.2)
+//            intent.putExtra("filme", "The Witcher")
+//            intent.putExtra("classificacao", 5)
+//            intent.putExtra("avaliacoes", 9.2)
+
+            val filme = Filme(
+                "Sem limites",
+                "teste",
+                3.8,
+                "Jamilton",
+                "Netflix"
+            )
+
+            intent.putExtra("filme" ,filme)
 
             startActivity(intent)
         }
